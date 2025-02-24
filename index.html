@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="module" src="./js/game.js" defer></script>
+    <script type="module" src="./js/questions.js" defer></script>
+</head>
+<body>
+    <div id="quiz-container">
+        <div class="info" id="info-container"></div>
+        <div class="choices" id="choices-container"></div>
+        <div id="button-container">
+            <button class="button" id="next-button">Suivant</button>
+            <button class="button" id="replay-button" style="display: none;">Rejouer</button>
+        </div>
+        <div id="progress-container">
+            <div id="current-question"></div>
+            <div id="timer"></div>
+            <progress id="progress" max="100" value="10"></progress>
+        </div>
+    </div>
+</body>
+</html>
