@@ -32,7 +32,7 @@ function loadQuestion() {
 }
 
 function createTimer() {
-    let time = 10;
+    let time = 15;
     let intervalID = setInterval(() => {
         timer.innerText = time;
         if (time == 0) {
@@ -43,7 +43,7 @@ function createTimer() {
             clearInterval(intervalID);
         }
         time--;
-    }, 1000);
+    }, 1500);
 }
 
 function createButton(currentQuestion) {
