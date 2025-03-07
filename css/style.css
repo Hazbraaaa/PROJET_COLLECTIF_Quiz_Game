@@ -2,9 +2,33 @@
 body {
     text-align: center;
     padding: 10px;
-    background-image: url(../img/Chabat.webp);
+    background-color: wheat;
     background-size: cover;
     color: black;
+}
+
+/* NavMenu */
+.navMenu {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    list-style: none;
+    margin: 20px;
+}
+.navMenu div {
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    font-size: large;
+    border: 3px solid black;
+}
+.navMenu div a {
+    display: flex;
+    justify-content: center;
+    color: black;
+    text-decoration: none;
+}
+.navMenu div a:hover {
+    transform: scale(1.1);
 }
 
 /* Infos */
@@ -21,7 +45,7 @@ body {
     border-radius: 30px;
 }
 
-.message {
+#message {
     margin-top: 40px;
     padding: 10px;
     margin-left: auto;
@@ -57,6 +81,13 @@ body {
     font-weight: bold;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.choice:disabled {
+    background-color: rgba(20, 223, 216, 0.42);
+    cursor: not-allowed;
+    opacity: 0.7;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
 .correct {
@@ -126,9 +157,7 @@ progress::-moz-progress-bar {
 }
 
 .button:disabled {
-    background-color: rgba(255, 255, 255, 0.274);
-    color: black;
-    border: 1px solid #F4FEFE;
+    background-color: rgba(20, 223, 216, 0.42);
     cursor: not-allowed;
     opacity: 0.7;
     transition: background-color 0.3s ease, opacity 0.3s ease;
@@ -137,4 +166,5 @@ progress::-moz-progress-bar {
 .button:hover {
     font-weight: bold;
     transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }

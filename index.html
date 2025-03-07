@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Game</title>
+    <title>Quiz Game - Menu</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script type="module" src="./js/game.js" defer></script>
-    <script type="module" src="./js/questions.js" defer></script>
 </head>
+
 <body>
-    <div id="quiz-container">
-        <div class="info" id="info-container"></div>
-        <div class="choices" id="choices-container"></div>
-        <div id="button-container">
-            <button class="button" id="next-button">Suivant</button>
-            <button class="button" id="replay-button" style="display: none;">Rejouer</button>
-        </div>
-        <div id="progress-container">
-            <div id="current-question"></div>
-            <div id="timer"></div>
-            <progress id="progress" max="100" value="10"></progress>
-        </div>
-    </div>
+    <h1>QUIZ GAME</h1>
+    <h2>Testes tes connaissances cinématographiques !</h2>
+    <button class="quiz" value="quiz_RRRrrrr" onclick="window.location.href = 'quiz.html';">RRRrrrr</button>
+    <button class="quiz" value="quiz_Oss117" onclick="window.location.href = 'quiz.html';">OSS 117</button>
+    <button class="quiz" value="quiz_CitéDeLaPeur" onclick="window.location.href = 'quiz.html';">Cité De La Peur</button>
+    <script>
+        const allQuizButton = document.querySelectorAll('.quiz');
+
+        allQuizButton.forEach((button) => {
+            button.addEventListener("click", () => {
+                localStorage.setItem("currentQuiz", button.value);
+            });
+        });
+    </script>
 </body>
+
 </html>

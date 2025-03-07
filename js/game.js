@@ -1,28 +1,60 @@
-import { quiz } from "./questions.js";
+import { quizzes } from "./questions.js";
+import { stockScore } from "./score.js";
 
 
 // init variables
 
-let infoContainer = document.querySelector('#info-container');
-let choicesContainer = document.querySelector('#choices-container');
-let nextButton = document.querySelector('#next-button');
-let replayButton = document.querySelector('#replay-button');
-let progressContainer = document.querySelector('#progress-container');
-let whichQuestion = document.querySelector('#current-question');
-let progress = document.querySelector('#progress');
-let timer = document.querySelector('#timer');
+const message = document.querySelector('#message');
+const infoContainer = document.querySelector('#info-container');
+const choicesContainer = document.querySelector('#choices-container');
+const nextButton = document.querySelector('#next-button');
+const replayButton = document.querySelector('#replay-button');
+const whichQuestion = document.querySelector('#current-question');
+const progressContainer = document.querySelector('#progress-container');
+const progress = document.querySelector('#progress');
+const timer = document.querySelector('#timer');
+const navQuizName = document.querySelector('#quiz-name');
+let currentQuiz;
 let currentQuestionIndex = 0;
-let score = 0;
+export let score = 0;
+export let quizName;
+
+
 
 
 // init functions
 
-function loadQuestion() {
-    let currentQuestion = quiz.questions[currentQuestionIndex];
 
-    choicesContainer.innerHTML = "";
+function loadQuiz() {
+    switch (localStorage.getItem("currentQuiz")) {
+        case "quiz_RRRrrrr":
+            navQuizName.innerText = "RRRrrrr";
+            quizName = "RRRrrrr";
+            break;
+        case "quiz_Oss117":
+            navQuizName.innerText = "OSS 117";
+            quizName = "Oss117";
+            break;
+        case "quiz_CitéDeLaPeur":
+            navQuizName.innerText = "La Cité de la Peur";
+            quizName = "CitéDeLaPeur";
+            break;
+    }
+    currentQuiz = quizzes[localStorage.getItem("currentQuiz")];
+}
+
+function loadQuestion() {
+    if (currentQuestionIndex === currentQuiz.questions.length) {
+        currentQuestionIndex = 0;
+        score = 0;
+    } // checking pbs of refreshing nav
+
+    const currentQuestion = currentQuiz.questions[currentQuestionIndex];
+
+    message.style.display = "none";
+    choicesContainer.textContent = "";
     whichQuestion.innerText = `Question ${currentQuestionIndex + 1}`;
-    progress.value = (currentQuestionIndex / quiz.questions.length) * 100;
+    progress.value = (currentQuestionIndex / currentQuiz.questions.length) * 100;
     nextButton.disabled = true;
     infoContainer.innerText = currentQuestion.text;
 
@@ -33,38 +65,38 @@ function loadQuestion() {
 
 function createTimer() {
     let time = 15;
+
+    timer.innerText = `Temps restant = ${time} secondes`;
     let intervalID = setInterval(() => {
-        timer.innerText = time;
-        if (time == 0) {
-            clearInterval(intervalID);
+        timer.innerText = `Temps restant = ${time} secondes`;
+        if (time === 0) {
             timeUpMessage();
+            localStorage.setItem(`currentQuestionIndex_${quizName}`, currentQuestionIndex + 1);
+            clearInterval(intervalID);
         }
         if (!nextButton.disabled) {
+            localStorage.setItem(`currentQuestionIndex_${quizName}`, currentQuestionIndex + 1);
             clearInterval(intervalID);
         }
         time--;
-    }, 1500);
+    }, 1000);
 }
 
 function createButton(currentQuestion) {
     currentQuestion.choices.forEach((element) => {
         const choice = document.createElement('button');
         choice.innerText = element;
-        if (choice.innerText == currentQuestion.answer) {
-            choice.setAttribute("id", "answer");
-        }
         choice.classList.add('choice');
         choicesContainer.appendChild(choice);
     });
 }
 
 function answering() {
-    let choicesArray = document.querySelectorAll('.choice');
-    let answer = document.querySelector('#answer');
-    
+    const choicesArray = document.querySelectorAll('.choice');
+
     choicesArray.forEach((element) => {
         element.addEventListener("click", () => {
-            checkAnswer(element, answer);
+            checkAnswer(element);
             nextButton.disabled = false;
             choicesArray.forEach((element) => {
                 element.disabled = true;
@@ -73,25 +105,21 @@ function answering() {
     });
 }
 
-function checkAnswer(selectedChoice, answerChoice) {
-    if (selectedChoice.innerText === quiz.questions[currentQuestionIndex].answer) {
+function checkAnswer(selectedChoice) {
+    if (selectedChoice.innerText === currentQuiz.questions[currentQuestionIndex].answer) {
+        selectedChoice.classList.add('correct');
         score++;
     }
     else {
         selectedChoice.classList.add('wrong');
     }
-    answerChoice.classList.add('correct');
 }
 
-function showMessage(number) {
-    let message = document.createElement('div');
-
-    message.classList.add('message');
-    infoContainer.after(message);
-    if (number < (quiz.questions.length/3)) {
+function showMessage(score) {
+    if (score < (currentQuiz.questions.length / 3)) {
         message.innerText = "Pas terrible comme score !";
     }
-    else if (number > (quiz.questions.length/3) && number < (quiz.questions.length*2/3)) {
+    else if (score > (currentQuiz.questions.length / 3) && score < (currentQuiz.questions.length * 2 / 3)) {
         message.innerText = "Pas mal, t'y es presque !";
     }
     else {
@@ -100,40 +128,49 @@ function showMessage(number) {
 }
 
 function timeUpMessage() {
-    let answer = document.querySelector('#answer');
-    let choicesArray = document.querySelectorAll('.choice');
+    const choicesArray = document.querySelectorAll('.choice');
 
-    alert("Trop long!");
+    timer.innerText = "Trop lent !";
     nextButton.disabled = false;
     choicesArray.forEach((element) => {
         element.disabled = true;
     })
-    answer.classList.add('correct');
+}
+
+function updateLocalStorage() {
+    if (localStorage.getItem(`currentQuestionIndex_${quizName}`)) {
+        currentQuestionIndex = Number(localStorage.getItem(`currentQuestionIndex_${quizName}`));
+        score = Number(localStorage.getItem(`score_${quizName}`));
+    }
 }
 
 
 // execute code
 
+loadQuiz();
+updateLocalStorage();
 loadQuestion();
 nextButton.addEventListener("click", () => {
     currentQuestionIndex++;
-    if (currentQuestionIndex < quiz.questions.length) {
+    localStorage.setItem(`currentQuestionIndex_${quizName}`, currentQuestionIndex);
+    localStorage.setItem(`score_${quizName}`, score);
+    if (currentQuestionIndex < currentQuiz.questions.length) {
         loadQuestion();
     }
     else {
-        infoContainer.innerText = `Fin du game ! Ton Score = ${score}/${quiz.questions.length}`;
+        infoContainer.innerText = `Fin du game ! Ton Score = ${score}/${currentQuiz.questions.length}`;
         showMessage(score);
-        // localStorage.setItem("score", score);
-        // alert(localStorage.getItem("score"));
-        choicesContainer.innerHTML = "";
+        choicesContainer.textContent = "";
+        message.style.display = "block"
         progressContainer.style.display = "none";
         nextButton.style.display = "none";
         replayButton.style.display = "inline-block";
+        stockScore();
+        localStorage.removeItem(`currentQuestionIndex_${quizName}`);
+        localStorage.removeItem(`score_${quizName}`);
     }
 })
 replayButton.addEventListener("click", () => {
-    let message = document.querySelector(".message");
-    message.remove();
     currentQuestionIndex = 0;
     score = 0;
     progressContainer.style.display = "inline-block";
