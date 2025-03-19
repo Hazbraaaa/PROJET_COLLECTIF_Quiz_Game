@@ -7,7 +7,7 @@ export const scores = {
 }
 
 export function stockScore() {
-    // stock une premier fois les scores
+    // first localStorage of scores
     if (!localStorage.getItem("scores")) {
         localStorage.setItem("scores", JSON.stringify(scores));
     }

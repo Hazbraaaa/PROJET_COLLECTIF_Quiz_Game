@@ -13,30 +13,27 @@ const whichQuestion = document.querySelector('#current-question');
 const progressContainer = document.querySelector('#progress-container');
 const progress = document.querySelector('#progress');
 const timer = document.querySelector('#timer');
-const navQuizName = document.querySelector('#quiz-name');
+const navTitle = document.querySelector('#title');
 let currentQuiz;
 let currentQuestionIndex = 0;
 export let score = 0;
 export let quizName;
 
 
-
-
 // init functions
-
 
 function loadQuiz() {
     switch (localStorage.getItem("currentQuiz")) {
         case "quiz_RRRrrrr":
-            navQuizName.innerText = "RRRrrrr";
+            navTitle.innerText = "RRRrrrr";
             quizName = "RRRrrrr";
             break;
         case "quiz_Oss117":
-            navQuizName.innerText = "OSS 117";
+            navTitle.innerText = "OSS 117";
             quizName = "Oss117";
             break;
         case "quiz_CitéDeLaPeur":
-            navQuizName.innerText = "La Cité de la Peur";
+            navTitle.innerText = "La Cité de la Peur";
             quizName = "CitéDeLaPeur";
             break;
     }
@@ -44,10 +41,11 @@ function loadQuiz() {
 }
 
 function loadQuestion() {
+    // checking pbs of refreshing nav
     if (currentQuestionIndex === currentQuiz.questions.length) {
         currentQuestionIndex = 0;
         score = 0;
-    } // checking pbs of refreshing nav
+    }
 
     const currentQuestion = currentQuiz.questions[currentQuestionIndex];
 
