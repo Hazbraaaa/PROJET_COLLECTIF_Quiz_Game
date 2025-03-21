@@ -1,9 +1,12 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap');
+
 /* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 /* Style général */
@@ -22,15 +25,15 @@ body {
 /* Barre de navigation */
 .navMenu {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-around; /* Espacement équilibré */
+    align-items: center; 
     width: 90%;
     max-width: 800px;
     background: rgba(255, 255, 255, 0.1);
     padding: 15px 20px;
     border-radius: 10px;
     backdrop-filter: blur(10px);
-    margin-bottom: 20px;
+    margin: 0 auto 20px auto; /* Centrage */
 }
 
 .navMenu a {
@@ -45,6 +48,28 @@ body {
     color: #FF4B2B;
 }
 
+.title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #FF4B2B;
+    text-transform: uppercase;
+    text-align: center;
+    flex-grow: 1; /* Permet au titre de prendre la place restante */
+}
+
+.navMenu div {
+    flex: 1; /* Permet une répartition équilibrée */
+    text-align: center;
+}
+
+.navMenu div:first-child {
+    text-align: left;
+}
+.navMenu div:last-child {
+    text-align: right;
+}
+
+
 /* Conteneur des scores */
 #scores-container {
     background: rgba(255, 255, 255, 0.1);
@@ -53,7 +78,7 @@ body {
     backdrop-filter: blur(10px);
     width: 90%;
     max-width: 600px;
-    text-align: left;
+    text-align:center;
 }
 
 /* Titres des sections */
@@ -80,12 +105,4 @@ label {
     font-weight: bold;
     color: white;
     transition: all 0.3s ease;
-}
-
-/* Animation sur hover */
-#score-RRRrrrr:hover,
-#score-Oss117:hover,
-#score-CitéDeLaPeur:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.05);
 }
