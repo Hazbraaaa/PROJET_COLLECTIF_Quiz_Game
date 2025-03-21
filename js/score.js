@@ -1,40 +1,30 @@
-import { score, quizName } from "./game.js";
+// init variables
 
-export const scores = {
-    score_RRRrrrr: [],
-    score_Oss117: [],
-    score_CitéDeLaPeur: [],
-}
+const scoresContainer = document.querySelector("#scores-container");
+const scoreRRRrrrr = document.querySelector("#score-RRRrrrr");
+const scoreOss117 = document.querySelector("#score-Oss117");
+const scoreCitéDeLaPeur = document.querySelector("#score-CitéDeLaPeur");
 
-export function stockScore() {
-    // first localStorage of scores
-    if (!localStorage.getItem("scores")) {
-        localStorage.setItem("scores", JSON.stringify(scores));
-    }
+function printScores() {
     let scoresLS = JSON.parse(localStorage.getItem("scores"));
 
-    switch (quizName) {
-        case "RRRrrrr":
-            scoresLS.score_RRRrrrr.push(score);
-            break;
-        case "Oss117":
-            scoresLS.score_Oss117.push(score);
-            break;
-        case "CitéDeLaPeur":
-            scoresLS.score_CitéDeLaPeur.push(score);
-            break;
+    if (!scoresLS) {
+        scoresContainer.innerHTML = "Encore aucun score. Finissez un premier quiz.";
+        return;
     }
-    localStorage.setItem("scores", JSON.stringify(scoresLS));
+
+    const quizzes = {
+        score_RRRrrrr: scoreRRRrrrr,
+        score_Oss117: scoreOss117,
+        score_CitéDeLaPeur: scoreCitéDeLaPeur
+    }
+
+    for (let quiz in scoresLS) {
+        let score = scoresLS[quiz];
+        score.forEach((element, index) => {
+            quizzes[quiz].innerText += `Tentative n°${index + 1} => Score ${element}\n`;
+        })
+    };
 }
 
-// function printScores() {
-//     let scoresLS = JSON.parse(localStorage.getItem("scores"));
-
-//     scoresLS.forEach((quiz) => {
-//         quiz.forEach((element, index) => {
-//             console.log(`Tentative n°${index} => Score${element}`);
-//         })
-//     });
-// }
-
-// printScores();
+printScores();

@@ -1,5 +1,4 @@
 import { quizzes } from "./questions.js";
-import { stockScore } from "./score.js";
 
 
 // init variables
@@ -16,8 +15,13 @@ const timer = document.querySelector('#timer');
 const navTitle = document.querySelector('#title');
 let currentQuiz;
 let currentQuestionIndex = 0;
-export let score = 0;
-export let quizName;
+let score = 0;
+let quizName;
+const scores = {
+    score_RRRrrrr: [],
+    score_Oss117: [],
+    score_CitéDeLaPeur: [],
+};
 
 
 // init functions
@@ -142,6 +146,26 @@ function updateLocalStorage() {
     }
 }
 
+function stockScore() {
+    // first localStorage of scores
+    if (!localStorage.getItem("scores")) {
+        localStorage.setItem("scores", JSON.stringify(scores));
+    }
+    let scoresLS = JSON.parse(localStorage.getItem("scores"));
+
+    switch (quizName) {
+        case "RRRrrrr":
+            scoresLS.score_RRRrrrr.push(score);
+            break;
+        case "Oss117":
+            scoresLS.score_Oss117.push(score);
+            break;
+        case "CitéDeLaPeur":
+            scoresLS.score_CitéDeLaPeur.push(score);
+            break;
+    }
+    localStorage.setItem("scores", JSON.stringify(scoresLS));
+}
 
 // execute code
 
