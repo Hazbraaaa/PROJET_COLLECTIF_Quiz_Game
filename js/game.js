@@ -3,16 +3,16 @@ import { quizzes } from "./questions.js";
 
 // init variables
 
-const message = document.querySelector('#message');
+const navTitle = document.querySelector('#title');
 const infoContainer = document.querySelector('#info-container');
+const message = document.querySelector('#message');
 const choicesContainer = document.querySelector('#choices-container');
 const nextButton = document.querySelector('#next-button');
 const replayButton = document.querySelector('#replay-button');
-const whichQuestion = document.querySelector('#current-question');
 const progressContainer = document.querySelector('#progress-container');
-const progress = document.querySelector('#progress');
+const whichQuestion = document.querySelector('#current-question');
 const timer = document.querySelector('#timer');
-const navTitle = document.querySelector('#title');
+const progress = document.querySelector('#progress');
 let currentQuiz;
 let currentQuestionIndex = 0;
 let score = 0;
@@ -59,7 +59,6 @@ function loadQuestion() {
     progress.value = (currentQuestionIndex / currentQuiz.questions.length) * 100;
     nextButton.disabled = true;
     infoContainer.innerText = currentQuestion.text;
-
     createTimer();
     createButton(currentQuestion);
     answering();
@@ -119,13 +118,13 @@ function checkAnswer(selectedChoice) {
 
 function showMessage(score) {
     if (score < (currentQuiz.questions.length / 3)) {
-        message.innerText = "Pas terrible comme score !";
+        message.innerText = "Bon, au moins, t'as essayé. C'est déjà pas mal.😆";
     }
     else if (score > (currentQuiz.questions.length / 3) && score < (currentQuiz.questions.length * 2 / 3)) {
-        message.innerText = "Pas mal, t'y es presque !";
+        message.innerText = "C'est correct, mais un petit conseil : regarde le film de nouveau.😏";
     }
     else {
-        message.innerText = "Quelle encyclopédie !";
+        message.innerText = "Bravo! Un niveau aussi haut, c'est presque suspect...😎";
     }
 }
 
@@ -184,9 +183,9 @@ nextButton.addEventListener("click", () => {
         showMessage(score);
         choicesContainer.textContent = "";
         message.style.display = "block"
-        progressContainer.style.display = "none";
         nextButton.style.display = "none";
-        replayButton.style.display = "inline-block";
+        replayButton.style.display = "flex";
+        progressContainer.style.display = "none";
         stockScore();
         localStorage.removeItem(`currentQuestionIndex_${quizName}`);
         localStorage.removeItem(`score_${quizName}`);
@@ -195,8 +194,8 @@ nextButton.addEventListener("click", () => {
 replayButton.addEventListener("click", () => {
     currentQuestionIndex = 0;
     score = 0;
-    progressContainer.style.display = "inline-block";
     replayButton.style.display = "none";
-    nextButton.style.display = "inline-block";
+    nextButton.style.display = "flex";
+    progressContainer.style.display = "flex";
     loadQuestion();
 })

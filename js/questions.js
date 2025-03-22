@@ -11,7 +11,7 @@ export const quiz_RRRrrrr = {
             answer: "Un Yorkmouth",
         },
         {
-            text: "Que répond-t-on à quelqu'un qui nous dit « Ça va être tout noir » ?",
+            text: "Que répond-t-on à quelqu'un qui nous dit:\n' Ça va être tout noir ' ?",
             choices: [
                 "Plait-il ?",
                 "Qu'est ce que ça peut me faire ?",
@@ -36,19 +36,19 @@ export const quiz_RRRrrrr = {
                 "Ceux au lézard-mayo",
                 "Ceux au mammouth-cornichons",
                 "Ceux à la terre",
-                "D : la réponse D"
+                "Ceux au shampoing"
             ],
             answer: "Ceux à la terre",
         },
         {
-            text: "Quelle est la meilleure réplique du film ?",
+            text: "Complètes cette réplique culte:\n' T'as baisé ma femme, j'ai baisé ma femme... '  ?",
             choices: [
-                "- Qu'est ce vous fêtez?\n- Non c'est faux, on dit « qu'est ce que vous faites ».",
-                "- Vous connaissez ma femme ?\n- Oui, chef !\n- Elle est belle, hein ?\n- Oui, chef !",
-                "- C'est une chose qu'on n'a jamais vue. J'appelle cette chose : un crime.\n- Crime ?\n- J'aurais pu dire meurtre. Non, j'ai dit crime.\n- C'est bien.",
-                "T'as baisé ma femme, j'ai baisé ma femme. Allez... on est quitte !"
+                "Espèce de sale sale !",
+                "Ah, et bien si ça ne me dérange pas je n'y vois pas d'inconvénients.",
+                "Tu vas payer salope !",
+                "Allez... on est quitte !"
             ],
-            answer: "T'as baisé ma femme, j'ai baisé ma femme. Allez... on est quitte !",
+            answer: "Allez... on est quitte !",
         },
     ]
 }
@@ -66,7 +66,7 @@ export const quiz_Oss117 = {
             answer: "La Société Cairote d'Elevage de Poulets",
         },
         {
-            text: "Qui a chanté Bambino, magnifiquement interprété à la mandoline par Hubert ?",
+            text: "Qui a chanté ' Bambino ', magnifiquement interprété à la mandoline par Hubert ?",
             choices: [
                 "Dalida",
                 "Henri Salvador",
@@ -76,7 +76,7 @@ export const quiz_Oss117 = {
             answer: "Dalida",
         },
         {
-            text: "Qui était notre « Reis » à nous en France en 1955 ?",
+            text: "Qui était notre ' Reis à nous ' en France en 1955 ?",
             choices: [
                 "Le général De Gaulle",
                 "Vincent Auriol",
@@ -86,7 +86,7 @@ export const quiz_Oss117 = {
             answer: "René Coty",
         },
         {
-            text: "Où OSS117 a-t-il tué le frère de beaucoup de chinois ?",
+            text: "Où OSS 117 a-t-il tué le frère de beaucoup de chinois ?",
             choices: [
                 "Gstadt",
                 "Gstaad",
@@ -141,7 +141,7 @@ export const quiz_CitéDeLaPeur = {
             answer: "Une Safrane",
         },
         {
-            text: "Quel est le record de Serge en saut en longueur ?",
+            text: "Quel record de saut en longueur réalise Serge à cause de ces cons de mimes ?",
             choices: [
                 "10.88",
                 "12.88",

@@ -1,4 +1,4 @@
-/* Import Google Font */
+/* Font */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap');
 
 /* Reset */
@@ -9,7 +9,7 @@
     font-family: 'Raleway', sans-serif;
 }
 
-/* Style général */
+/* Global */
 body {
     background: linear-gradient(135deg, #1E1E2F, #3A3A6E);
     color: white;
@@ -22,10 +22,10 @@ body {
     padding: 20px;
 }
 
-/* Barre de navigation */
+/* NavMenu */
 .navMenu {
     display: flex;
-    justify-content: space-around; /* Espacement équilibré */
+    justify-content: space-around;
     align-items: center; 
     width: 90%;
     max-width: 800px;
@@ -33,9 +33,8 @@ body {
     padding: 15px 20px;
     border-radius: 10px;
     backdrop-filter: blur(10px);
-    margin: 0 auto 20px auto; /* Centrage */
+    margin: 0 auto 20px auto;
 }
-
 .navMenu a {
     color: white;
     text-decoration: none;
@@ -43,34 +42,30 @@ body {
     font-weight: bold;
     transition: 0.3s ease;
 }
-
 .navMenu a:hover {
     color: #FF4B2B;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
-
-.title {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #FF4B2B;
-    text-transform: uppercase;
-    text-align: center;
-    flex-grow: 1; /* Permet au titre de prendre la place restante */
-}
-
 .navMenu div {
-    flex: 1; /* Permet une répartition équilibrée */
+    flex: 1;
     text-align: center;
 }
-
 .navMenu div:first-child {
     text-align: left;
 }
 .navMenu div:last-child {
     text-align: right;
 }
+.title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #FF4B2B;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    flex-grow: 1;
+}
 
-
-/* Conteneur des scores */
+/* Scores */
 #scores-container {
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
@@ -78,19 +73,17 @@ body {
     backdrop-filter: blur(10px);
     width: 90%;
     max-width: 600px;
-    text-align:center;
+    text-align: center;
 }
-
-/* Titres des sections */
-label {
+#scores-container label {
     display: block;
     font-size: 1.2rem;
     font-weight: bold;
     margin: 15px 0 5px;
     color: #FF4B2B;
-}
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 
-/* Style des blocs de scores */
+}
 #score-RRRrrrr,
 #score-Oss117,
 #score-CitéDeLaPeur {
