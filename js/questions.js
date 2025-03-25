@@ -41,14 +41,14 @@ export const quiz_RRRrrrr = {
             answer: "Ceux à la terre",
         },
         {
-            text: "Complètes cette réplique culte:\n' T'as baisé ma femme, j'ai baisé ma femme... '  ?",
+            text: "Complète cette réplique culte:\n' T'as baisé ma femme, j'ai baisé ma femme... '  ?",
             choices: [
-                "Espèce de sale sale !",
-                "Ah, et bien si ça ne me dérange pas je n'y vois pas d'inconvénients.",
-                "Tu vas payer salope !",
-                "Allez... on est quitte !"
+                "'Espèce de sale sale !'",
+                "'Ah, et bien si ça ne me dérange pas je n'y vois pas d'inconvénients.'",
+                "'Et si on faisait un biche volley ?'",
+                "'Allez... on est quitte.'"
             ],
-            answer: "Allez... on est quitte !",
+            answer: "'Allez... on est quitte.'",
         },
     ]
 }
@@ -131,7 +131,7 @@ export const quiz_CitéDeLaPeur = {
             answer: "Natacha Koroleva",
         },
         {
-            text: "Quelle voiture est une série Palme d'Or?",
+            text: "Quelle voiture était une série Palme d'Or?",
             choices: [
                 "Une Megane",
                 "Une Fiesta",
@@ -151,7 +151,7 @@ export const quiz_CitéDeLaPeur = {
             answer: "12.88",
         },
         {
-            text: "Quel est le bon dicton ?\nMais prenez un chewing-gum d'abord Emile.",
+            text: "Quel est le bon dicton ?\n'Mais prenez un chewing-gum d'abord Emile.'",
             choices: [
                 "On ne peut pas trompez une fois mille personnes",
                 "On ne peut pas trompez mille fois une personne",
